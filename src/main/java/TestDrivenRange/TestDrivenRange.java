@@ -2,7 +2,7 @@ package TestDrivenRange;
 
 public class TestDrivenRange{
 
-public Static String findNoOfReadingsInRange(String currentSamples){
+public static String findNoOfReadingsInRange(String currentSamples){
   return "4-5,2";
 }
   
