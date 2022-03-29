@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class TestDrivenRangeTest {
 
-  @Test
+   @Test
   public void testRange() {
     assertNull(TestDrivenRange.findNoOfReadingsInRange());
     assertNull(TestDrivenRange.findNoOfReadingsInRange(4));
@@ -30,6 +30,29 @@ public class TestDrivenRangeTest {
 
     List<String> actualOutput2 = TestDrivenRange.findNoOfReadingsInRange(4, 10, 11, 12);
     assertEquals("10-12,3", actualOutput2.get(0));
+  }
+
+  @Test
+  public void testConvertA2DListIntoAmps() {
+    List<Integer> convertA2DInputToAmps = TestDrivenRange.convertA2DListIntoAmps(4092, 4503, 1146);
+    assert (10 == convertA2DInputToAmps.get(0));
+    assert (11 == convertA2DInputToAmps.get(1));
+    assert (3 == convertA2DInputToAmps.get(2));
+  }
+
+  @Test
+  public void testConvertA2DInputToAmps() {
+    assertEquals(10, TestDrivenRange.convertA2DInputToAmps(4092));
+    assertEquals(10, TestDrivenRange.convertA2DInputToAmps(4094));
+    assertEquals(11, TestDrivenRange.convertA2DInputToAmps(4503));
+  }
+
+  @Test
+  public void testRoundOffToNearestInteger() {
+    assertEquals(0, TestDrivenRange.roundOffToNearestInteger(0f));
+    assertEquals(0, TestDrivenRange.roundOffToNearestInteger(0.4f));
+    assertEquals(1, TestDrivenRange.roundOffToNearestInteger(0.5f));
+    assertEquals(1, TestDrivenRange.roundOffToNearestInteger(0.6f));
   }
 
 }
