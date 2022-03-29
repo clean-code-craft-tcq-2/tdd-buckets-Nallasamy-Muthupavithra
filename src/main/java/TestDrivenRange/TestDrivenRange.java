@@ -8,10 +8,7 @@ import java.util.stream.Collectors;
 
 public class TestDrivenRange {
 
-  /**
-   *
-   */
-  private static final int MIN_LEN_FOR_RANGE = 2;
+    private static final int MIN_LEN_FOR_RANGE = 2;
   private static final String COMMA_SEP = ",";
   private static final String HYPHEN_SEP = "-";
 
@@ -83,4 +80,23 @@ public class TestDrivenRange {
     return samplesList;
   }
 
+  public static List<Integer> convertA2DListIntoAmps(final int... curSamples) {
+    List<Integer> samplesInAmpsList = new ArrayList<>();
+    int sampleInAmps;
+    for (int sample : curSamples) {
+      sampleInAmps = convertA2DInputToAmps(sample);
+      samplesInAmpsList.add(sampleInAmps);
+    }
+    return samplesInAmpsList;
+  }
+
+  public static int convertA2DInputToAmps(final int sample) {
+    int sampleInAmps;
+    sampleInAmps = roundOffToNearestInteger((float) (sample * 10) / 4094);
+    return sampleInAmps;
+  }
+
+  public static int roundOffToNearestInteger(final float sampleInFloat) {
+    return Math.round(sampleInFloat);
+  }
 }
