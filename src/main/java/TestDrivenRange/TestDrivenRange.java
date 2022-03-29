@@ -8,9 +8,16 @@ import java.util.stream.Collectors;
 
 public class TestDrivenRange {
 
-    private static final int MIN_LEN_FOR_RANGE = 2;
+  private static final int MAX_A2D_INPUT = 4094;
+  private static final int MIN_A2D_INPUT = 0;
+  private static final int MIN_LEN_FOR_RANGE = 2;
   private static final String COMMA_SEP = ",";
   private static final String HYPHEN_SEP = "-";
+
+  public static List<String> findRangesForA2DInput(final int... samples) {
+    int[] curSamples = convertA2DListIntoAmps(samples);
+    return findNoOfReadingsInRange(curSamples);
+  }
 
   public static List<String> findNoOfReadingsInRange(final int... curSamples) {
     if (curSamples.length < MIN_LEN_FOR_RANGE) {
@@ -80,12 +87,16 @@ public class TestDrivenRange {
     return samplesList;
   }
 
-  public static List<Integer> convertA2DListIntoAmps(final int... curSamples) {
-    List<Integer> samplesInAmpsList = new ArrayList<>();
+  public static int[] convertA2DListIntoAmps(final int... curSamples) {
+    int[] samplesInAmpsList = new int[curSamples.length];
     int sampleInAmps;
+    int iterator = 0;
     for (int sample : curSamples) {
-      sampleInAmps = convertA2DInputToAmps(sample);
-      samplesInAmpsList.add(sampleInAmps);
+      if ((sample >= MIN_A2D_INPUT) && (sample <= MAX_A2D_INPUT)) {
+        sampleInAmps = convertA2DInputToAmps(sample);
+        samplesInAmpsList[iterator] = sampleInAmps;
+        iterator++;
+      }
     }
     return samplesInAmpsList;
   }
