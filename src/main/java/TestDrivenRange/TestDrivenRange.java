@@ -87,18 +87,23 @@ public class TestDrivenRange {
     return samplesList;
   }
 
-  public static int[] convertA2DListIntoAmps(final int... curSamples) {
+    public static int[] convertA2DListIntoAmps(final int... curSamples) {
     int[] samplesInAmpsList = new int[curSamples.length];
-    int sampleInAmps;
     int iterator = 0;
     for (int sample : curSamples) {
-      if ((sample >= MIN_A2D_INPUT) && (sample <= MAX_A2D_INPUT)) {
-        sampleInAmps = convertA2DInputToAmps(sample);
-        samplesInAmpsList[iterator] = sampleInAmps;
-        iterator++;
-      }
+      iterator = convertToAmpsIfValidInput(samplesInAmpsList, iterator, sample);
     }
     return samplesInAmpsList;
+  }
+
+  private static int convertToAmpsIfValidInput(final int[] samplesInAmpsList, int iterator, final int sample) {
+    int sampleInAmps;
+    if ((sample >= MIN_A2D_INPUT) && (sample <= MAX_A2D_INPUT)) {
+      sampleInAmps = convertA2DInputToAmps(sample);
+      samplesInAmpsList[iterator] = sampleInAmps;
+      iterator++;
+    }
+    return iterator;
   }
 
   public static int convertA2DInputToAmps(final int sample) {
