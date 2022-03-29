@@ -115,15 +115,5 @@ public class TestDrivenRange {
   public static int roundOffToNearestInteger(final float sampleInFloat) {
     return Math.round(sampleInFloat);
   }
-   private static int[] removeErrorReadings(final int[] curSamples) {
-    int[] samples = new int[curSamples.length];
-    int iterator = 0;
-    for (int sample : samples) {
-      if ((sample >= MIN_A2D_INPUT) && (sample <= MAX_A2D_INPUT)) {
-        samples[iterator] = sample;
-        iterator++;
-      }
-    }
-    return samples;
-  }
+  
 }
